@@ -1,14 +1,15 @@
 <script>
-import notesMain from './components/notesMain.vue'
+import WidgetNotes from './components/WidgetNotes.vue'
 
 export default {
-  components: { notesMain },
+  components: { WidgetNotes },
 }
 </script>
 
 <template>
-  <notesMain />
+  <WidgetNotes />
 </template>
+
 <style>
 #app {
   width: 100%;

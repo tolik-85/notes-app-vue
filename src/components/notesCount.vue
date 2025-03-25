@@ -1,8 +1,9 @@
 <script>
 export default {
-  props: ['count'],
+  props: ['notes'],
 }
 </script>
+
 <template>
-  <span class="notes-count">Всего заметок: {{ count }}</span>
+  <span class="notes-count">Всего заметок: {{ notes.length }}</span>
 </template>

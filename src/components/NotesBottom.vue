@@ -1,13 +1,13 @@
 <script>
-import singleNote from './singleNote.vue'
-import notesCount from './notesCount.vue'
+import NoteEditor from './NoteEditor.vue'
+import NotesCount from './NotesCount.vue'
 
 export default {
   props: ['notes'],
 
   emits: ['localNotes'],
 
-  components: { singleNote, notesCount },
+  components: { NoteEditor, NotesCount },
 
   data() {
     return {}
@@ -40,16 +40,15 @@ export default {
   <div class="section">
     <div class="notes-header">
       <h2>Список заметок</h2>
-      <notesCount :count="notes.length" />
+      <NotesCount :notes />
     </div>
     <div class="notes" id="notes-container">
-      <singleNote
-        v-for="(note, idx) of notes"
-        :key="idx"
-        :note="note"
-        :idx="idx"
-        @removeNote="removeNote($event)"
-        @updateNote="updateNote($event, idx)"
+      <NoteEditor
+        v-for="note of notes"
+        :key="note.id"
+        :note
+        @note-removed="removeNote($event)"
+        @note-updated="updateNote($event, note)"
       />
     </div>
   </div>

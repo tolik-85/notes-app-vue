@@ -1,39 +1,30 @@
 <script>
-import notesForm from './notesForm.vue'
-import notes from './notes.vue'
+import NoteSubmitter from './NoteSubmitter.vue'
+import NotesBottom from './NotesBottom.vue'
 
 export default {
-  components: { notesForm, notes },
-
-  emits: ['notesList'],
+  components: { NoteSubmitter, NotesBottom },
 
   data() {
     return {
-      notesList: [],
+      notes: [],
     }
   },
-  methods: {
-    addNote(note) {
-      this.notesList.push(note)
-      // console.log(this.notesList)
-    },
-    updateNotesList(updatesNotes) {
-      this.notesList = updatesNotes
-    },
-  },
-  watch: {},
 }
 </script>
+
 <template>
   <div class="container">
     <div class="section">
       <h1>Приложение для заметок</h1>
     </div>
-    <notesForm @newNote="addNote" />
-    <!-- @keyup.enter="emitNote" -->
-    <notes :notes="notesList" @localNotes="updateNotesList($event)" />
+
+    <NoteSubmitter @note-submitted="notesList.push(note)" />
+
+    <NotesBottom :notes @local-notes="notes = $event" />
   </div>
 </template>
+
 <style>
 * {
   box-sizing: border-box;
