@@ -6,13 +6,13 @@ export default {
 
   data() {
     return {
-      localNote: { ...note },
+      localNote: { ...this.note },
     }
   },
 
-  methods: {
-    updateText(text) {
-      this.$emit('note-updated', { ...this.localNote, text, isEditing: false })
+  watch: {
+    localNote(newValue) {
+      this.$emit('note-updated', newValue)
     },
   },
 }
@@ -20,25 +20,21 @@ export default {
 <template>
   <div class="note-card">
     <div class="note-content">
-      <p
-        v-if="!localNote.isEditable"
-        @dblclick="
-          this.$emit('note-updated', { ...localNote, isEditable: true })
-        "
-      >
+      <p v-if="!localNote.isEditable" @dblclick="localNote.isEditable = true">
         {{ localNote.text }}
       </p>
 
       <textarea
         v-else
         :value="localNote.text"
-        @blur="updateText($event.target.value)"
+        @blur="localNote.isEditable = false"
+        @change="localNote.text = $event.target.value"
       >
       </textarea>
     </div>
 
     <div class="note-actions">
-      <button @click="$emit('note-removed', note)">Удалить</button>
+      <button @click="$emit('note-removed', localNote)">Удалить</button>
     </div>
   </div>
 </template>

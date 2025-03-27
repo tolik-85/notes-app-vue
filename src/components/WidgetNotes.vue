@@ -1,9 +1,10 @@
 <script>
 import NoteSubmitter from './NoteSubmitter.vue'
-import NotesBottom from './NotesBottom.vue'
+import NotesList from './NotesList.vue'
+import NotesCount from './NotesCount.vue'
 
 export default {
-  components: { NoteSubmitter, NotesBottom },
+  components: { NoteSubmitter, NotesList, NotesCount },
 
   data() {
     return {
@@ -19,11 +20,23 @@ export default {
       <h1>Приложение для заметок</h1>
     </div>
 
-    <NoteSubmitter @note-submitted="notesList.push(note)" />
+    {{ notes }}
 
-    <NotesBottom :notes @local-notes="notes = $event" />
+    <NoteSubmitter @note-submitted="notes.push($event)" />
+
+    <div class="section">
+      <div class="notes-header">
+        <h2>Список заметок</h2>
+
+        <NotesCount :notes />
+      </div>
+
+      <NotesList v-model="notes" />
+    </div>
   </div>
 </template>
+
+<!-- <NotesBottom :model-value="notes" @update:model-value="notes = $event" /> -->
 
 <style>
 * {

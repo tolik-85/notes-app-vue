@@ -7,7 +7,9 @@ export default {
 </script>
 
 <template>
-  <WidgetNotes />
+  <div>
+    <WidgetNotes />
+  </div>
 </template>
 
 <style>

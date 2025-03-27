@@ -1,5 +1,5 @@
 <script>
-const makeId = () => Math.trunc(Math.random * 0xffff_ffff)
+const makeId = () => Math.trunc(Math.random() * 0xffff_ffff)
 
 const initNote = () => ({
   id: makeId(),
