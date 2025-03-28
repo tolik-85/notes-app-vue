@@ -18,6 +18,7 @@ export default {
 
   methods: {
     submitNote() {
+      if (this.note.text === '') return
       this.$emit('note-submitted', this.note)
       this.note = initNote()
     },

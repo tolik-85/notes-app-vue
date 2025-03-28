@@ -11,8 +11,11 @@ export default {
   },
 
   watch: {
-    localNote(newValue) {
-      this.$emit('note-updated', newValue)
+    localNote: {
+      deep: true,
+      handler(newValue) {
+        this.$emit('note-updated', newValue)
+      },
     },
   },
 }
