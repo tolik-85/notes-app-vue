@@ -11,15 +11,25 @@ export default {
   },
 
   watch: {
-    localNote: {
+    note: {
       deep: true,
       handler(newValue) {
-        this.$emit('note-updated', newValue)
+        this.localNote = { ...newValue }
+      },
+    },
+
+    localNote: {
+      deep: true,
+      handler(newValue, oldValue) {
+        if (newValue === oldValue) {
+          this.$emit('note-updated', { ...newValue })
+        }
       },
     },
   },
 }
 </script>
+
 <template>
   <div class="note-card">
     <div class="note-content">
@@ -37,7 +47,19 @@ export default {
     </div>
 
     <div class="note-actions">
-      <button @click="$emit('note-removed', localNote)">Удалить</button>
+      <button @click="$emit('note-removed', { ...localNote })">Удалить</button>
+    </div>
+
+    <div
+      @click="
+        $emit('note-updated', {
+          id: localNote.id,
+          text: '55555',
+          isEditable: true,
+        })
+      "
+    >
+      X
     </div>
   </div>
 </template>

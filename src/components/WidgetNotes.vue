@@ -17,7 +17,18 @@ export default {
 <template>
   <div class="container">
     <div class="section">
-      <h1>Приложение для заметок</h1>
+      <h1 @click="notes[0].text = '!!!!!!!'">Приложение для заметок</h1>
+      <h1
+        @click="
+          notes[0] = {
+            id: 999999,
+            text: '999999',
+            isEditable: true,
+          }
+        "
+      >
+        Приложение для заметок
+      </h1>
     </div>
 
     {{ notes }}
@@ -30,6 +41,14 @@ export default {
 
         <NotesCount :notes />
       </div>
+
+      <NotesList v-model="notes" />
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
 
       <NotesList v-model="notes" />
     </div>
