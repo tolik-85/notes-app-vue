@@ -1,7 +1,7 @@
 <script>
 import NoteSubmitter from './NoteSubmitter.vue'
 import NotesList from './NotesList.vue'
-import NotesCount from './NotesCount.vue'
+import NotesCount from './notesCount.vue'
 
 export default {
   components: { NoteSubmitter, NotesList, NotesCount },
